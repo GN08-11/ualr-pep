@@ -1,341 +1,341 @@
-import { auth, db } from "./firebase.js";
+// import { auth, db } from "./firebase.js";
 
-import {
-    GoogleAuthProvider,
-    signInWithPopup,
-    signOut,
-    onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+// import {
+//     GoogleAuthProvider,
+//     signInWithPopup,
+//     signOut,
+//     onAuthStateChanged
+// }
+// from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-import {
-    collection,
-    addDoc,
-    query,
-    orderBy,
-    onSnapshot,
-    doc,
-    updateDoc,
-    increment
-}
-from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+// import {
+//     collection,
+//     addDoc,
+//     query,
+//     orderBy,
+//     onSnapshot,
+//     doc,
+//     updateDoc,
+//     increment
+// }
+// from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-/* ==========================
-   ELEMENTS
-========================== */
+// /* ==========================
+//    ELEMENTS
+// ========================== */
 
-const loginBtn = document.getElementById("loginBtn");
-const profileArea = document.getElementById("profileArea");
+// const loginBtn = document.getElementById("loginBtn");
+// const profileArea = document.getElementById("profileArea");
 
-const postInput = document.getElementById("postInput");
-const postBtn = document.getElementById("postBtn");
+// const postInput = document.getElementById("postInput");
+// const postBtn = document.getElementById("postBtn");
 
-const feed = document.getElementById("feed");
+// const feed = document.getElementById("feed");
 
-/* ==========================
-   LOGIN
-========================== */
+// /* ==========================
+//    LOGIN
+// ========================== */
 
-const provider = new GoogleAuthProvider();
+// const provider = new GoogleAuthProvider();
 
-loginBtn.addEventListener("click", async () => {
+// loginBtn.addEventListener("click", async () => {
 
-    if (auth.currentUser) {
+//     if (auth.currentUser) {
 
-        await signOut(auth);
+//         await signOut(auth);
 
-        return;
-    }
+//         return;
+//     }
 
-    try {
+//     try {
 
-        await signInWithPopup(
-            auth,
-            provider
-        );
+//         await signInWithPopup(
+//             auth,
+//             provider
+//         );
 
-    }
-    catch (error) {
+//     }
+//     catch (error) {
 
-        console.error(error);
+//         console.error(error);
 
-        alert(
-            "Failed to sign in."
-        );
-    }
+//         alert(
+//             "Failed to sign in."
+//         );
+//     }
 
-});
+// });
 
-/* ==========================
-   USER STATE
-========================== */
+// /* ==========================
+//    USER STATE
+// ========================== */
 
-onAuthStateChanged(auth, (user) => {
+// onAuthStateChanged(auth, (user) => {
 
-    if (user) {
+//     if (user) {
 
-        loginBtn.textContent =
-            "Logout";
+//         loginBtn.textContent =
+//             "Logout";
 
-        profileArea.innerHTML = `
-            <img
-                src="${user.photoURL}"
-                alt="Profile"
-                style="
-                    width:40px;
-                    height:40px;
-                    border-radius:50%;
-                "
-            >
+//         profileArea.innerHTML = `
+//             <img
+//                 src="${user.photoURL}"
+//                 alt="Profile"
+//                 style="
+//                     width:40px;
+//                     height:40px;
+//                     border-radius:50%;
+//                 "
+//             >
 
-            <span>
-                ${user.displayName}
-            </span>
-        `;
+//             <span>
+//                 ${user.displayName}
+//             </span>
+//         `;
 
-    }
-    else {
+//     }
+//     else {
 
-        loginBtn.textContent =
-            "Login";
+//         loginBtn.textContent =
+//             "Login";
 
-        profileArea.innerHTML = "";
-    }
+//         profileArea.innerHTML = "";
+//     }
 
-});
+// });
 
-/* ==========================
-   CREATE POST
-========================== */
+// /* ==========================
+//    CREATE POST
+// ========================== */
 
-postBtn.addEventListener(
-    "click",
-    createPost
-);
+// postBtn.addEventListener(
+//     "click",
+//     createPost
+// );
 
-async function createPost() {
+// async function createPost() {
 
-    if (!auth.currentUser) {
+//     if (!auth.currentUser) {
 
-        alert(
-            "Please login first."
-        );
+//         alert(
+//             "Please login first."
+//         );
 
-        return;
-    }
+//         return;
+//     }
 
-    const text =
-        postInput.value.trim();
+//     const text =
+//         postInput.value.trim();
 
-    if (text === "") {
+//     if (text === "") {
 
-        alert(
-            "Post cannot be empty."
-        );
+//         alert(
+//             "Post cannot be empty."
+//         );
 
-        return;
-    }
+//         return;
+//     }
 
-    try {
+//     try {
 
-        await addDoc(
+//         await addDoc(
 
-            collection(
-                db,
-                "posts"
-            ),
+//             collection(
+//                 db,
+//                 "posts"
+//             ),
 
-            {
+//             {
 
-                author:
-                    auth.currentUser.displayName,
+//                 author:
+//                     auth.currentUser.displayName,
 
-                email:
-                    auth.currentUser.email,
+//                 email:
+//                     auth.currentUser.email,
 
-                photo:
-                    auth.currentUser.photoURL,
+//                 photo:
+//                     auth.currentUser.photoURL,
 
-                text:
-                    text,
+//                 text:
+//                     text,
 
-                likes:
-                    0,
+//                 likes:
+//                     0,
 
-                createdAt:
-                    Date.now()
+//                 createdAt:
+//                     Date.now()
 
-            }
+//             }
 
-        );
+//         );
 
-        postInput.value = "";
+//         postInput.value = "";
 
-    }
-    catch (error) {
+//     }
+//     catch (error) {
 
-        console.error(error);
+//         console.error(error);
 
-        alert(
-            "Failed to create post."
-        );
-    }
+//         alert(
+//             "Failed to create post."
+//         );
+//     }
 
-}
+// }
 
-/* ==========================
-   FEED
-========================== */
+// /* ==========================
+//    FEED
+// ========================== */
 
-const postQuery = query(
-    collection(db, "posts"),
-    orderBy(
-        "createdAt",
-        "desc"
-    )
-);
+// const postQuery = query(
+//     collection(db, "posts"),
+//     orderBy(
+//         "createdAt",
+//         "desc"
+//     )
+// );
 
-onSnapshot(
-    postQuery,
-    loadPosts
-);
+// onSnapshot(
+//     postQuery,
+//     loadPosts
+// );
 
-/* ==========================
-   DISPLAY POSTS
-========================== */
+// /* ==========================
+//    DISPLAY POSTS
+// ========================== */
 
-function loadPosts(snapshot) {
+// function loadPosts(snapshot) {
 
-    feed.innerHTML = "";
+//     feed.innerHTML = "";
 
-    snapshot.forEach((postDoc) => {
+//     snapshot.forEach((postDoc) => {
 
-        const post =
-            postDoc.data();
+//         const post =
+//             postDoc.data();
 
-        const postId =
-            postDoc.id;
+//         const postId =
+//             postDoc.id;
 
-        const postElement =
-            document.createElement("article");
+//         const postElement =
+//             document.createElement("article");
 
-        postElement.classList.add(
-            "post"
-        );
+//         postElement.classList.add(
+//             "post"
+//         );
 
-        const date =
-            new Date(
-                post.createdAt
-            );
+//         const date =
+//             new Date(
+//                 post.createdAt
+//             );
 
-        postElement.innerHTML = `
+//         postElement.innerHTML = `
 
-            <div class="post-header">
+//             <div class="post-header">
 
-                <img
-                    class="post-avatar"
-                    src="${post.photo}"
-                    alt="Profile"
-                >
+//                 <img
+//                     class="post-avatar"
+//                     src="${post.photo}"
+//                     alt="Profile"
+//                 >
 
-                <div>
+//                 <div>
 
-                    <h3 class="post-author">
-                        ${post.author}
-                    </h3>
+//                     <h3 class="post-author">
+//                         ${post.author}
+//                     </h3>
 
-                    <span class="post-date">
-                        ${date.toLocaleString()}
-                    </span>
+//                     <span class="post-date">
+//                         ${date.toLocaleString()}
+//                     </span>
 
-                </div>
+//                 </div>
 
-            </div>
+//             </div>
 
-            <p class="post-content">
-                ${post.text}
-            </p>
+//             <p class="post-content">
+//                 ${post.text}
+//             </p>
 
-            <div class="post-actions">
+//             <div class="post-actions">
 
-                <button
-                    class="like-btn"
-                    data-id="${postId}"
-                >
-                    ❤️ ${post.likes}
-                </button>
+//                 <button
+//                     class="like-btn"
+//                     data-id="${postId}"
+//                 >
+//                     ❤️ ${post.likes}
+//                 </button>
 
-            </div>
-        `;
+//             </div>
+//         `;
 
-        feed.appendChild(
-            postElement
-        );
+//         feed.appendChild(
+//             postElement
+//         );
 
-    });
+//     });
 
-    attachLikeEvents();
-}
+//     attachLikeEvents();
+// }
 
-/* ==========================
-   LIKE POSTS
-========================== */
+// /* ==========================
+//    LIKE POSTS
+// ========================== */
 
-function attachLikeEvents() {
+// function attachLikeEvents() {
 
-    const buttons =
-        document.querySelectorAll(
-            ".like-btn"
-        );
+//     const buttons =
+//         document.querySelectorAll(
+//             ".like-btn"
+//         );
 
-    buttons.forEach((button) => {
+//     buttons.forEach((button) => {
 
-        button.addEventListener(
-            "click",
-            async () => {
+//         button.addEventListener(
+//             "click",
+//             async () => {
 
-                const postId =
-                    button.dataset.id;
+//                 const postId =
+//                     button.dataset.id;
 
-                try {
+//                 try {
 
-                    const postRef =
-                        doc(
-                            db,
-                            "posts",
-                            postId
-                        );
+//                     const postRef =
+//                         doc(
+//                             db,
+//                             "posts",
+//                             postId
+//                         );
 
-                    await updateDoc(
-                        postRef,
-                        {
-                            likes:
-                            increment(
-                                1
-                            )
-                        }
-                    );
+//                     await updateDoc(
+//                         postRef,
+//                         {
+//                             likes:
+//                             increment(
+//                                 1
+//                             )
+//                         }
+//                     );
 
-                }
-                catch (error) {
+//                 }
+//                 catch (error) {
 
-                    console.error(
-                        error
-                    );
+//                     console.error(
+//                         error
+//                     );
 
-                }
+//                 }
 
-            }
-        );
+//             }
+//         );
 
-    });
+//     });
 
-}
+// }
 
-/* ==========================
-   STARTUP MESSAGE
-========================== */
+// /* ==========================
+//    STARTUP MESSAGE
+// ========================== */
 
-console.log(
-    "UALR Pep Band Connected"
-);
+// console.log(
+//     "UALR Pep Band Connected"
+// );
