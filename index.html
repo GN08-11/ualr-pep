@@ -10,220 +10,35 @@
 </head>
 
 <body>
-
-    <!-- TOP BAR -->
-    <header class="topbar">
-
-        <div class="logo">
-            🎺 UALR Pep Band
-        </div>
-
-        <input
-            type="text"
-            placeholder="Search posts..."
-            class="search-bar"
-        >
-
-        <button id="loginBtn">
+    <header>
+        <h1>
+            <img id="logo" src="img/TROJAN.webp" alt="UALR Logo">
+            UALR Pep Band Network
+        </h1>
+        <button id="login">
             Login
         </button>
-
-        <div id="profileArea"></div>
-
     </header>
-
-    <!-- MAIN PAGE -->
-    <div class="container">
-
-        <!-- LEFT SIDEBAR -->
-        <aside class="sidebar">
-
-            <a href="#" class="active">
-                🏠 Home
-            </a>
-
-            <a href="#">
-                📅 Schedule
-            </a>
-
-            <a href="#">
-                🎺 Members
-            </a>
-
-            <a href="#">
-                📷 Media
-            </a>
-
-            <a href="#">
-                📢 Announcements
-            </a>
-
-            <a href="#">
-                ✉ Contact
-            </a>
-
-        </aside>
-
-        <!-- MAIN FEED -->
-        <main>
-
-            <!-- FEATURED EVENT -->
-            <section class="featured-card">
-
-                <h2>🔥 Next Performance</h2>
-
-                <p>
-                    Trojans Basketball vs Arkansas State
-                </p>
-
-                <p>
-                    November 12 • 6:00 PM
-                </p>
-
-            </section>
-
-            <!-- CREATE POST -->
-
-            <section id="create-post">
-
-                <h3>Create Announcement</h3>
-
-                <textarea
-                    id="postInput"
-                    placeholder="Share an announcement with the band..."
-                ></textarea>
-
-                <button id="postBtn">
-                    Post
-                </button>
-
-            </section>
-
-            <!-- LIVE FEED -->
-
-            <section id="feed">
-
-                <!-- Firebase posts load here -->
-
-            </section>
-
-        </main>
-
-        <!-- RIGHT SIDEBAR -->
-
-        <aside class="right-panel">
-
-            <div class="widget">
-
-                <h3>Upcoming Events</h3>
-
-                <ul>
-
-                    <li>
-                        Basketball vs Arkansas State
-                    </li>
-
-                    <li>
-                        Rehearsal Wednesday
-                    </li>
-
-                    <li>
-                        Homecoming Pep Rally
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <div class="widget">
-
-                <h3>Band Stats</h3>
-
-                <p>
-                    Members: 60+
-                </p>
-
-                <p>
-                    Active Season: 2026
-                </p>
-
-            </div>
-
-        </aside>
-
-    </div>
-
-    <!-- MOBILE NAV -->
-
-    <nav class="mobile-nav">
-
-        <a href="#">
-            🏠
-        </a>
-
-        <a href="#">
-            📅
-        </a>
-
-        <a href="#">
-            🎺
-        </a>
-
-        <a href="#">
-            📷
-        </a>
-
+    <aside>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="media.html">Media</a></li>
+        </ul>
     </nav>
+    </aside>
+    <main>
+        <textarea id="post-input"placeholder="Type your message here...">
 
-    <!-- TEMPLATE FOR POSTS -->
+        </textarea>
+        <button id="post-button">
+            Post
+        </button>
+        <section id="feed">
 
-    <template id="postTemplate">
-
-        <article class="post">
-
-            <div class="post-header">
-
-                <img
-                    class="post-avatar"
-                    src=""
-                    alt="Profile Picture"
-                >
-
-                <div>
-
-                    <h3 class="post-author"></h3>
-
-                    <span class="post-date"></span>
-
-                </div>
-
-            </div>
-
-            <p class="post-content"></p>
-
-            <div class="post-actions">
-
-                <button class="like-btn">
-                    ❤️ 0
-                </button>
-
-                <button class="comment-btn">
-                    💬 Comment
-                </button>
-
-            </div>
-
-            <div class="comments-container">
-
-            </div>
-
-        </article>
-
-    </template>
-
-    <!-- JAVASCRIPT -->
-
-    <script type="module" src="app.js"></script>
-
+        </section>
+    </main>
 </body>
 </html>
