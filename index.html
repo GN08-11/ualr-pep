@@ -3,90 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>UALR Pep Band Network</title>
+
     <link rel="stylesheet" href="style-sheet.css">
 </head>
+
 <body>
 
+    <!-- TOP BAR -->
     <header class="topbar">
+
         <div class="logo">
             🎺 UALR Pep Band
         </div>
 
-        <input type="text" placeholder="Search posts, members, events...">
+        <input
+            type="text"
+            placeholder="Search posts..."
+            class="search-bar"
+        >
 
-        <div class="profile">
-            <img src="images/profile.png" alt="Profile">
-        </div>
+        <button id="loginBtn">
+            Login
+        </button>
+
+        <div id="profileArea"></div>
+
     </header>
 
+    <!-- MAIN PAGE -->
     <div class="container">
 
+        <!-- LEFT SIDEBAR -->
         <aside class="sidebar">
-            <a href="index.html">🏠 Home</a>
-            <a href="schedule.html">📅 Schedule</a>
-            <a href="members.html">🎺 Members</a>
-            <a href="media.html">📷 Media</a>
-            <a href="announcements.html">📢 Announcements</a>
-            <a href="contact.html">✉ Contact</a>
+
+            <a href="#" class="active">
+                🏠 Home
+            </a>
+
+            <a href="#">
+                📅 Schedule
+            </a>
+
+            <a href="#">
+                🎺 Members
+            </a>
+
+            <a href="#">
+                📷 Media
+            </a>
+
+            <a href="#">
+                📢 Announcements
+            </a>
+
+            <a href="#">
+                ✉ Contact
+            </a>
+
         </aside>
 
+        <!-- MAIN FEED -->
         <main>
 
+            <!-- FEATURED EVENT -->
             <section class="featured-card">
-                <h2>🔥 Next Event</h2>
-                <p>Basketball vs Arkansas State</p>
-                <p>November 12 • 6:00 PM</p>
+
+                <h2>🔥 Next Performance</h2>
+
+                <p>
+                    Trojans Basketball vs Arkansas State
+                </p>
+
+                <p>
+                    November 12 • 6:00 PM
+                </p>
+
             </section>
 
-            <section class="feed">
+            <!-- CREATE POST -->
 
-                <article class="post">
-                    <div class="post-header">
-                        <img src="images/bandlogo.png">
-                        <div>
-                            <h3>UALR Pep Band</h3>
-                            <span>2 hours ago</span>
-                        </div>
-                    </div>
+            <section id="create-post">
 
-                    <p>
-                        Great rehearsal tonight! Don't forget game-day
-                        attire for Saturday's matchup.
-                    </p>
+                <h3>Create Announcement</h3>
 
-                    <img src="images/rehearsal.jpg" class="post-image">
+                <textarea
+                    id="postInput"
+                    placeholder="Share an announcement with the band..."
+                ></textarea>
 
-                    <div class="post-actions">
-                        ❤️ 42 Likes
-                        💬 13 Comments
-                    </div>
-                </article>
+                <button id="postBtn">
+                    Post
+                </button>
 
-                <article class="post">
-                    <div class="post-header">
-                        <img src="images/bandlogo.png">
-                        <div>
-                            <h3>UALR Pep Band</h3>
-                            <span>Yesterday</span>
-                        </div>
-                    </div>
+            </section>
 
-                    <p>
-                        New music packets have been uploaded. Check the
-                        member portal for downloads.
-                    </p>
+            <!-- LIVE FEED -->
 
-                    <div class="post-actions">
-                        ❤️ 31 Likes
-                        💬 7 Comments
-                    </div>
-                </article>
+            <section id="feed">
+
+                <!-- Firebase posts load here -->
 
             </section>
 
         </main>
+
+        <!-- RIGHT SIDEBAR -->
+
+        <aside class="right-panel">
+
+            <div class="widget">
+
+                <h3>Upcoming Events</h3>
+
+                <ul>
+
+                    <li>
+                        Basketball vs Arkansas State
+                    </li>
+
+                    <li>
+                        Rehearsal Wednesday
+                    </li>
+
+                    <li>
+                        Homecoming Pep Rally
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="widget">
+
+                <h3>Band Stats</h3>
+
+                <p>
+                    Members: 60+
+                </p>
+
+                <p>
+                    Active Season: 2026
+                </p>
+
+            </div>
+
+        </aside>
+
     </div>
+
+    <!-- MOBILE NAV -->
+
+    <nav class="mobile-nav">
+
+        <a href="#">
+            🏠
+        </a>
+
+        <a href="#">
+            📅
+        </a>
+
+        <a href="#">
+            🎺
+        </a>
+
+        <a href="#">
+            📷
+        </a>
+
+    </nav>
+
+    <!-- TEMPLATE FOR POSTS -->
+
+    <template id="postTemplate">
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <img
+                    class="post-avatar"
+                    src=""
+                    alt="Profile Picture"
+                >
+
+                <div>
+
+                    <h3 class="post-author"></h3>
+
+                    <span class="post-date"></span>
+
+                </div>
+
+            </div>
+
+            <p class="post-content"></p>
+
+            <div class="post-actions">
+
+                <button class="like-btn">
+                    ❤️ 0
+                </button>
+
+                <button class="comment-btn">
+                    💬 Comment
+                </button>
+
+            </div>
+
+            <div class="comments-container">
+
+            </div>
+
+        </article>
+
+    </template>
+
+    <!-- JAVASCRIPT -->
+
+    <script type="module" src="app.js"></script>
 
 </body>
 </html>
