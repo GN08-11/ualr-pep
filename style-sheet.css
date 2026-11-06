@@ -1,7 +1,7 @@
 body {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
     background-color: #828282;
 }
 
@@ -26,9 +26,22 @@ main{
     padding: 20px;
 }
 
+footer{
+    grid-column: 1 / -1;
+    grid-row: -1 / -1;
+    background-color: #6e2639;
+    padding: 10px;
+    text-align: center;
+}
+
 header{
     display: flex;
     align-items: center;
+}
+
+header a{
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 h1{
